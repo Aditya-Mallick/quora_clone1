@@ -1,0 +1,30 @@
+{% extends 'main.html' %} {% load static %} {% block content %}
+
+<div class="post-container ques-container">
+  <div class="question ques-ask">
+    <div
+      class="question-title"
+      style="display: flex; margin: auto; text-align: center; max-width: 80%"
+    >
+      What do you want to ask the Quora community?
+    </div>
+    <!-- <div class="answer-form"> -->
+    <form action="" method="POST">
+      {% csrf_token %}
+      <div class="answer-form">
+        <label for="a2a">A2A</label>
+        <input type="text" name="a2a" class="ques-input" />
+      </div>
+      <div class="answer-form">
+        <label for="ques">Question</label>
+        <input type="text" name="ques" class="ques-input" />
+      </div>
+      <div class="answer-form">
+        <input class="answer-submit" type="submit" value="Ask" />
+      </div>
+    </form>
+    <!-- </div> -->
+  </div>
+</div>
+
+{% endblock %}

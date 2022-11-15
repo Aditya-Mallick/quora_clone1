@@ -1,0 +1,54 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quora Login - Clone</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
+  </head>
+  <body>
+    <div class="login-container">
+      <div class="login-form">
+        <div class="login-header">
+          <img src="{% static 'images/title.jpg' %}" alt="Quora" />
+          <p>A place to share knowledge and better understand the world</p>
+        </div>
+        <div class="login-heading">Login</div>
+
+        <form action="" method="POST">
+          {% csrf_token %}
+
+          <div class="form-group">
+            <label for="username">Username</label><br />
+            <input
+              type="username"
+              name="username"
+              id="username"
+              placeholder="Enter your email here..."
+            />
+          </div>
+          <div class="form-group">
+            <label for="password">Password</label><br />
+            <input
+              type="password"
+              name="password"
+              id="password"
+              placeholder="Enter your password here..."
+            />
+          </div>
+
+          <div class="submit-div">
+            <input type="submit" id="login-btn" value="Login" />
+          </div>
+        </form>
+
+        <div class="login-register">
+          Haven't Registered Yet? <a href="{% url 'register' %}">Register</a>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

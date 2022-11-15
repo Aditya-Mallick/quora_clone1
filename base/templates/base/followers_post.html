@@ -1,0 +1,70 @@
+{% extends 'main.html' %} {% block content %} {% load static %}
+
+<div class="feed-container">
+  <div class="sidebar-container">
+    <div class="sidebar-tile sidebar-heading">People</div>
+    {% for followee in followees %}
+    <div class="sidebar-tile followee-tile sidebar-title">
+      <a href="{% url 'profile' followee.user.id %}" style="background: none"
+        >{{followee.user.username}}</a
+      >
+    </div>
+    {% endfor %}
+  </div>
+  <div class="feed">
+    <div class="questions">
+      <span class="star material-icons-round"> stars </span>
+      <span class="ques-heading">Posts from people you are following:</span>
+    </div>
+
+    {% for mes in mess %}
+    <div class="post">
+      <div class="post-header">
+        <!-- <div class="post-image-holder"> -->
+        <a href="{% url 'profile' mes.user.id %}">
+          <img class="post-img" src="{{mes.user.avatar.url}}" alt=""
+        /></a>
+        <!-- </div> -->
+        <div class="post-user">
+          <div class="post-user-heading">
+            <div class="post-user-name">
+              <a href="{% url 'profile' mes.user.id %}" style="color: black">
+                {{mes.user.username}}</a
+              >
+            </div>
+            <div class="remove">
+              <a href=""
+                ><span class="cross material-icons-round"> more_horiz </span></a
+              >
+              <a href="">
+                <span class="cross material-icons-round"> close </span></a
+              >
+            </div>
+          </div>
+          <div class="post-user-info">Interior Designer . Aug 20</div>
+        </div>
+      </div>
+
+      <div class="post-content">
+        <div class="post-title">
+          <strong>
+            {% if mes.is_answer %} {{mes.ques.body}}
+            <!--  -->
+            {% else %} {% if mes.title %}
+            <!--  -->
+            {{mes.title}} {% else %} Post by {{mes.user.username | capfirst}}
+            <!---->
+            {% endif %}
+            <!-- {% -->
+            {% endif %} </strong
+          ><br />
+        </div>
+        <p>{{ mes.body }}</p>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+  <div></div>
+</div>
+
+{% endblock %}

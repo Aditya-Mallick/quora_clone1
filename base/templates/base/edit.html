@@ -1,0 +1,28 @@
+{% extends 'main.html' %} {% load static %} {% block content %}
+
+<div class="login-form">
+  <div class="edit-title"><h1>Edit Your Profile</h1></div>
+
+  <form action="" method="POST" enctype="multipart/form-data" class="edit">
+    {% csrf_token %} {% for field in form %}
+    <div
+      style="
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+      "
+    >
+      <div class="edit-form-group">
+        <label for="{{field.label}}">{{field.label}}</label><br />
+        {{field}}
+      </div>
+      {% endfor %}
+    </div>
+    <div class="submit-div">
+      <input type="submit" id="login-btn" value="Edit Profile" />
+    </div>
+  </form>
+</div>
+
+{% endblock %}

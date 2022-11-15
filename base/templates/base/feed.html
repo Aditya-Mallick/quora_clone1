@@ -1,0 +1,108 @@
+{% load static %}
+
+<div class="head-box">
+  <!-- <div class="head-box-row1"> -->
+  {% if request.user.is_authenticated %}
+  <a href="{% url 'profile' request.user.id %}">
+    <img
+      class="nav-profile-img post-img"
+      src="{{request.user.avatar.url}}"
+      alt=""
+  /></a>
+  {% else %}
+  <a href="{% url 'login' %}">
+    <img
+      class="nav-profile-img post-img"
+      src="{% static 'images/avatar.svg' %}"
+      alt=""
+    />
+  </a>
+  {% endif %}
+  <div class="headbox-input">
+    <a href="{% url 'questions' %}" style="color: gray"
+      >{{request.user.username | capfirst}}! What do you want to ask or
+      answer?</a
+    >
+  </div>
+
+  <button class="head-btn">
+    <a href="{% url 'ask' %}">
+      <div class="flex">
+        <div class="flex">
+          <span class="material-icons-round"> live_help </span>
+          <div class="flex" style="padding-left: 10px">Ask</div>
+        </div>
+      </div>
+    </a>
+  </button>
+
+  <button class="head-btn">
+    <div class="flex">
+      <a href="{% url 'questions' %}">
+        <div class="flex">
+          <span class="material-icons-round"> history_edu </span>
+          <div class="flex" style="padding-left: 10px">Answer</div>
+        </div>
+      </a>
+    </div>
+  </button>
+
+  <button class="head-btn">
+    <div class="flex">
+      <a href="{% url 'post' %}">
+        <div class="flex">
+          <span class="material-icons-round"> create </span>
+          <div class="flex" style="padding-left: 10px">Post</div>
+        </div>
+      </a>
+    </div>
+  </button>
+
+  <!-- </div> -->
+</div>
+
+{% for mes in mess %}
+<div class="post">
+  <div class="post-header">
+    <!-- <div class="post-image-holder"> -->
+    <a href="{% url 'profile' mes.user.id %}">
+      <img class="post-img" src="{{mes.user.avatar.url}}" alt=""
+    /></a>
+    <!-- </div> -->
+    <div class="post-user">
+      <div class="post-user-heading">
+        <div class="post-user-name">
+          <a href="{% url 'profile' mes.user.id %}" style="color: black">
+            {{mes.user.username}}</a
+          >
+        </div>
+        <div class="remove">
+          <a href=""
+            ><span class="cross material-icons-round"> more_horiz </span></a
+          >
+          <a href="">
+            <span class="cross material-icons-round"> close </span></a
+          >
+        </div>
+      </div>
+      <div class="post-user-info">
+        Interior Designer . {{mes.created_at | date}}
+      </div>
+    </div>
+  </div>
+
+  <div class="post-content">
+    <div class="post-title">
+      <strong>
+        {% if mes.is_answer %} {{mes.ques.body}} {% else %} {% if mes.title %}
+        {{mes.title}} {% else %} Post by {{mes.user.username | capfirst}}
+        <!---->
+        {% endif %}
+        <!-- {% -->
+        {% endif %} </strong
+      ><br />
+    </div>
+    <p>{{ mes.body }}</p>
+  </div>
+</div>
+{% endfor %}

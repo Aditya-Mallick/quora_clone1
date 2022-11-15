@@ -1,0 +1,67 @@
+{% extends 'main.html' %} {% block content %} {% load static %}
+
+<div class="feed-container">
+  <div class="sidebar-container">
+    <div class="sidebar-tile sidebar-heading">Questions</div>
+    <div class="sidebar-tile sidebar-title">
+      <a href=""> Questions for You</a>
+    </div>
+  </div>
+  <div class="feed">
+    <div class="questions">
+      <span class="star material-icons-round"> stars </span>
+      <span class="ques-heading"> Questions</span>
+    </div>
+
+    {% for que in ques %}
+    <div class="ques-tile">
+      <div class="ques-title">
+        <a href="{% url 'answer' que.id %}">
+          <div style="font-weight: 600">{{que.body}}</div></a
+        >
+        <div>
+          <a href="">
+            <span class="cross material-icons-round"> close </span></a
+          >
+        </div>
+      </div>
+      <div class="ques-info">
+        <a href="">{{que.answer_set.all.count}} answer</a>
+      </div>
+      <div class="answer-btns">
+        <button class="answer-btn head-btn">
+          <div class="flex">
+            <a href="{% url 'answer' que.id %}">
+              <div class="flex">
+                <span class="last-followed material-icons-round">
+                  history_edu
+                </span>
+                <div class="last-followed flex" style="padding-left: 10px">
+                  Answer
+                </div>
+              </div>
+            </a>
+          </div>
+        </button>
+        <button class="answer-btn head-btn">
+          <div class="flex">
+            <a href="">
+              <div class="flex">
+                <span class="last-followed material-icons-round">
+                  rss_feed
+                </span>
+                <div class="last-followed flex" style="padding-left: 10px">
+                  Follow
+                </div>
+              </div>
+            </a>
+          </div>
+        </button>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+  <div></div>
+</div>
+
+{% endblock %}

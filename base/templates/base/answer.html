@@ -1,0 +1,67 @@
+{% extends 'main.html' %} {% load static %} {% block content %}
+
+<div class="answer-container">
+  <div class="que-ans question">
+    <div class="question-title">{{que.body}}</div>
+    <!-- <div class="answer-form"> -->
+    <form action="" method="POST">
+      {% csrf_token %}
+      <div class="answer-form">
+        <textarea
+          type="text"
+          name="answer"
+          id=""
+          class="answer-input"
+          cols="30"
+          rows="5"
+        ></textarea>
+      </div>
+      <div class="answer-form">
+        <input class="answer-submit" type="submit" value="Post" />
+      </div>
+    </form>
+    <!-- </div> -->
+  </div>
+
+  {% for ans in answers %}
+  <div class="post">
+    <div class="post-header">
+      <!-- <div class="post-image-holder"> -->
+      <a href="">
+        <img class="post-img" src="{% static 'images/profile.png' %}" alt=""
+      /></a>
+      <!-- </div> -->
+      <div class="post-user">
+        <div class="post-user-heading">
+          <div class="post-user-name">
+            <a href="{% url 'profile' ans.user.id %}" style="color: black">
+              {{ans.user.username}}</a
+            ><a href=""> . Follow</a>
+          </div>
+          <div class="remove">
+            <a href=""
+              ><span class="cross material-icons-round"> more_horiz </span></a
+            >
+            <a href="">
+              <span class="cross material-icons-round"> close </span></a
+            >
+          </div>
+        </div>
+        <div class="post-user-info">Interior Designer . Aug 20</div>
+      </div>
+    </div>
+
+    <div class="post-content">
+      <!-- <div class="post-title">
+        <strong>
+          {% if mes.is_answer %} {{mes.ques.body}} {% else %} Post by
+          {{mes.user.username}} {% endif %} </strong
+        ><br />
+      </div> -->
+      <p>{{ ans.body }}</p>
+    </div>
+    {% endfor %}
+  </div>
+
+  {% endblock %}
+</div>

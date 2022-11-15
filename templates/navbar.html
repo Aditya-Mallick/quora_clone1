@@ -1,0 +1,78 @@
+{% load static %}
+
+<div class="nav-container">
+  <nav class="navbar">
+    <div class="logo-container">
+      <a class="" href="{% url 'home' %}"
+        ><img
+          src="{% static 'images/title.jpg' %}"
+          alt="Quora"
+          class="logo-img"
+      /></a>
+    </div>
+    <div class="icon-holder">
+      <a href="{% url 'home' %}"
+        ><span title="Home" class="icon active material-icons-round">
+          home
+        </span></a
+      >
+    </div>
+    <div class="icon-holder">
+      <a href="{% url 'following' %}"
+        ><span title="Following" class="icon active material-icons-round">
+          list_alt
+        </span></a
+      >
+    </div>
+    <div class="icon-holder">
+      <a href="{% url 'questions' %}"
+        ><span title="Answer" class="icon active material-icons-round">
+          edit_note
+        </span></a
+      >
+    </div>
+    <div class="icon-holder">
+      <a href="{% url 'ask' %}">
+        <span title="Ask" class="icon active material-icons-round">
+          dynamic_form
+        </span>
+      </a>
+    </div>
+    <div class="icon-holder">
+      <a href="{% url 'notifications' %}">
+        <span title="Notifications" class="icon active material-icons-round">
+          notifications
+        </span>
+      </a>
+    </div>
+
+    <div class="search-container">
+      <form action="" method="POST">
+        {% csrf_token %}
+        <span class="search-icon material-icons-round"> search </span>
+        <input
+          type="text"
+          name="q"
+          id="search-input"
+          placeholder="Search Quora"
+        />
+      </form>
+    </div>
+    <div class="nav-profile">
+      {% if request.user.is_authenticated %}
+      <a href="{% url 'logout' %}" style="color: #a62100"> Logout </a>
+      {% else %} <a href="{% url 'login' %}" style="color: #a62100"> Login </a>
+      {% endif %}
+    </div>
+    <div class="nav-btn-container">
+      <button class="nav-btn">
+        <a href="{% url 'ask' %}" style="color: white"> Add Question</a>
+      </button>
+      <button title="Create a Post" class="nav-dropdown">
+        <a href="{% url 'post' %}" style="color: white">
+          <span class="nav-add material-icons-round"> add </span></a
+        >
+      </button>
+    </div>
+  </nav>
+</div>
